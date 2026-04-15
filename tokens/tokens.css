@@ -1,0 +1,59 @@
+/* Dean Bryan Design System — Non-Colour Tokens
+ *
+ * Follows the Kennis OS / Septimius shared token architecture.
+ * Colour tokens remain in index.css (navy/cream/clay/garden/persian).
+ * This file provides motion, z-index, icon sizing, and skeleton shimmer.
+ */
+
+/* Motion Tokens */
+:root {
+  --motion-duration-instant: 0ms;
+  --motion-duration-fast: 100ms;
+  --motion-duration-normal: 200ms;
+  --motion-duration-slow: 400ms;
+  --motion-duration-slower: 500ms;
+  --motion-easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --motion-easing-in: cubic-bezier(0.4, 0, 1, 1);
+  --motion-easing-out: cubic-bezier(0, 0, 0.2, 1);
+  --motion-easing-linear: linear;
+}
+
+/* Z-Index Scale */
+:root {
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 300;
+  --z-popover: 400;
+  --z-tooltip: 500;
+  --z-fixed: 600;
+  --z-modal-backdrop: 400;
+  --z-toast: 700;
+}
+
+/* Icon Size Tokens */
+:root {
+  --icon-size-xs: 14px;
+  --icon-size-sm: 16px;
+  --icon-size-md: 20px;
+  --icon-size-lg: 24px;
+  --icon-size-xl: 32px;
+}
+
+/* Skeleton Shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--muted)) 25%,
+    hsl(var(--muted-foreground) / 0.08) 50%,
+    hsl(var(--muted)) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+}

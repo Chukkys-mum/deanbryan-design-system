@@ -1,0 +1,59 @@
+/* Dean Bryan Design System — Container Queries
+ * (from Kennis OS / Septimius architecture)
+ *
+ * Wrapper classes that establish containment contexts, allowing
+ * descendant components to respond to their parent's inline size
+ * rather than the viewport.
+ */
+
+.container-card {
+  container-type: inline-size;
+  container-name: card;
+}
+
+.container-sidebar {
+  container-type: inline-size;
+  container-name: sidebar;
+}
+
+.container-main {
+  container-type: inline-size;
+  container-name: main;
+}
+
+.card-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@container card (min-width: 400px) {
+  .card-layout {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+
+@container card (min-width: 640px) {
+  .card-layout {
+    gap: 1.5rem;
+  }
+}
+
+@container card (min-width: 320px) {
+  .show-at-sm { display: block; }
+}
+
+@container card (min-width: 480px) {
+  .show-at-md { display: block; }
+}
+
+@container card (min-width: 640px) {
+  .show-at-lg { display: block; }
+}
+
+.show-at-sm,
+.show-at-md,
+.show-at-lg {
+  display: none;
+}

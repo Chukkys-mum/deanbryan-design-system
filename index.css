@@ -1,0 +1,12 @@
+/* Dean Bryan Design System — Entry Point
+ *
+ * Import in your app's main CSS file:
+ *   @import "../design-system/index.css";
+ */
+
+@import "./tokens/colors.css";
+@import "./tokens/tokens.css";
+@import "./tokens/accessibility.css";
+@import "./tokens/rtl.css";
+@import "./tokens/containers.css";
+@import "./tokens/print.css";
