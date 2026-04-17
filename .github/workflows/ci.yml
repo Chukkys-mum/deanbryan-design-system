@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint CSS tokens + typecheck preset
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install lint deps
+        run: npm install --no-save --no-audit --no-fund stylelint stylelint-config-standard typescript@5.6.3
+      - name: Stylelint all CSS
+        run: |
+          echo '{"extends": "stylelint-config-standard", "rules": {"declaration-block-trailing-semicolon": null, "length-zero-no-unit": null, "no-descending-specificity": null}}' > .stylelintrc.json
+          npx stylelint "**/*.css"
+      - name: Typecheck tailwind preset
+        run: npx tsc --noEmit --allowJs --esModuleInterop --moduleResolution node --target ES2022 tailwind.preset.ts
